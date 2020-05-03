@@ -2,6 +2,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+import {HttpClientModule} from '@angular/common/http';
+
 import { RouterModule } from '@angular/router';
 
 /**MODAL**/
@@ -38,6 +41,7 @@ import { LicitacionComponent } from './component/licitacion/licitacion.component
     RouterModule,
     AppRoutingModule,
     MatDialogModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
