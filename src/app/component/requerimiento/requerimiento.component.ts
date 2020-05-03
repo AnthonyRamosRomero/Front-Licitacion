@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ModalComponent} from './modal/modal.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-requerimiento',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequerimientoComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
+
 
   ngOnInit() {
+  }
+
+  openDialog() {
+    this.dialog.open(ModalComponent);
   }
 }

@@ -64,7 +64,7 @@
 
                         <div class="col-md-12">
                                     <div class="card-header">
-                                        <button mat-flat-button color="accent">+</button>
+                                        <button mat-mini-fab color="accent" (click)="openDialog()">+</button>
                                     </div>
                                     <div class="table-responsive table-hover">
                                         <table class="table">
@@ -106,6 +106,14 @@
                                             </tbody>
                                         </table>
                                     </div>
+                            <div class="card-footer">
+                                <div class="row">
+
+                                </div>
+                                <button mat-flat-button color="primary">Save</button>
+                                <button mat-flat-button color="warn">Cancel</button>
+                                <button mat-flat-button color="primary">Save</button>
+                            </div>
                         </div>
                         <!--TABLA REQUERIMIENTO-->
                         <!--<div class="col-md-12">
@@ -450,3 +458,58 @@
     </div>
 </div>
 -->
+
+<!--********************************MODAL********************************-->
+<!-- Modal -->
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            &lt;!&ndash;HEADER&ndash;&gt;
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar producto al requerimiento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            &lt;!&ndash;CUERPO DEL MODAL&ndash;&gt;
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            &lt;!&ndash;SELECT&ndash;&gt;
+                            <select class="custom-select">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                            &lt;!&ndash;FIN SELECT&ndash;&gt;
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Cantidad" type="number">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Precio Unitario Estimado" type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Precio Total Estimado" disabled="true" type="number">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button mat-flat-button color="primary">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>-->

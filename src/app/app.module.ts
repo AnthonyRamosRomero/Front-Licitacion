@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+/**MODAL**/
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -35,6 +37,7 @@ import { LicitacionComponent } from './component/licitacion/licitacion.component
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
