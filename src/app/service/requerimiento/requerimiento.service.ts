@@ -29,4 +29,7 @@ export class RequerimientoService {
     return this.http.get<ResponseEntity<Requerimiento[]>>(this.getUrlService('listRequeriment'), httpOptions);
   }
 
+  save(requerimiento: Requerimiento) {
+    return this.http.post<ResponseEntity<Requerimiento>>(this.getUrlService('saveRequirement'), requerimiento, httpOptions);
+  }
 }

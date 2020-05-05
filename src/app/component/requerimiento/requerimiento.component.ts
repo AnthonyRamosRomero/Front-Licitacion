@@ -6,6 +6,9 @@ import {AreaSolicitante} from '../../models/entities/area-solicitante';
 import {TipoRequerimientoService} from '../../service/TipoRequerimiento/tipo-requerimiento.service';
 import {TipoRequerimiento} from '../../models/entities/tipo-requerimiento';
 import {DetalleRequerimiento} from '../../models/entities/detalle-requerimiento';
+import {Requerimiento} from '../../models/entities/requerimiento';
+import {RequerimientoService} from '../../service/requerimiento/requerimiento.service';
+import {DetalleRequerimientoService} from '../../service/DetalleReuquerimiento/detalle-requerimiento.service';
 
 @Component({
   selector: 'app-requerimiento',
@@ -14,16 +17,28 @@ import {DetalleRequerimiento} from '../../models/entities/detalle-requerimiento'
 })
 export class RequerimientoComponent implements OnInit {
 
+
+  ppp: Requerimiento[] = new Array()
+
+
+  /*Requerimiento*/
+  requerimiento: Requerimiento = new Requerimiento()
+  /*Detalle Requerimiento*/
   listDetalleRequerimiento: DetalleRequerimiento[]
 
+  /*Combos*/
   listAreas: AreaSolicitante[]
   listTipoR: TipoRequerimiento[]
 
+  /*Para el acordion*/
+  panelOpenState = true;
 
   constructor(
       public dialog: MatDialog,
       private areaSolicitanteService: AreaSolicitanteService,
-      private tipoRequerimientoService: TipoRequerimientoService
+      private tipoRequerimientoService: TipoRequerimientoService,
+      private requerimientoService: RequerimientoService,
+      private detalleRequerimientoService: DetalleRequerimientoService
   ) {}
 
 
@@ -41,7 +56,7 @@ export class RequerimientoComponent implements OnInit {
   /***************METHODS SERVICES***************/
   finAllAreaSolicitante() {
     this.areaSolicitanteService.finAll().subscribe(list => {
-      this.listAreas = list.result;
+      this.listAreas =  list.result;
     })
   }
 
@@ -51,8 +66,30 @@ export class RequerimientoComponent implements OnInit {
     })
   }
 
+  /*Para llenar la tabla dinamicamente*/
   listaDetalleRequerimiento() {
     this.listDetalleRequerimiento = ModalComponent.listDetalleRequerimiento
+  }
+
+  saveRequerimiento() {
+    console.log(this.requerimiento)
+    this.saveDetalleRequerimiento()
+    /*this.requerimientoService.save(this.requerimiento).subscribe( response => {
+      console.log(response)
+    })*/
+  }
+
+  saveDetalleRequerimiento() {
+    console.log(this.listDetalleRequerimiento)
+    this.requerimientoService.finAll().subscribe(jajaja => {
+      this.ppp = jajaja.result
+    })
+  }
+
+  async generateRequerimiento() {
+    await this.requerimientoService.save(this.requerimiento).subscribe( response => {
+      this.requerimiento = response.result
+    })
   }
 
 }

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ResponseEntity} from '../../models/entities/ResponseEntity';
 import {AreaSolicitante} from '../../models/entities/area-solicitante';
 import {DetalleRequerimiento} from '../../models/entities/detalle-requerimiento';
+import {Requerimiento} from '../../models/entities/requerimiento';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -29,4 +30,7 @@ export class DetalleRequerimientoService {
     return this.http.get<ResponseEntity<DetalleRequerimiento[]>>(this.getUrlService('listdetallerrequerimiento'), httpOptions);
   }
 
+  save(detalleRequerimiento: DetalleRequerimiento) {
+    return this.http.post<ResponseEntity<DetalleRequerimiento>>(this.getUrlService('savedetallerequerimiento'), detalleRequerimiento, httpOptions);
+  }
 }
