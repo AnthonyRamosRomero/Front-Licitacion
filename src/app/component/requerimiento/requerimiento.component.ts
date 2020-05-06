@@ -14,7 +14,7 @@ import {DetalleRequerimiento} from '../../models/entities/detalle-requerimiento'
 })
 export class RequerimientoComponent implements OnInit {
 
-  listDetalleRequerimiento: DetalleRequerimiento[]
+  listDetalleRequerimiento: DetalleRequerimiento[] = new Array
 
   listAreas: AreaSolicitante[]
   listTipoR: TipoRequerimiento[]

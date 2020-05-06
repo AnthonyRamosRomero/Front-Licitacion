@@ -20,6 +20,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/requerimiento', title: 'Requerimiento', icon: 'unarchive', class: ''},
     { path: '/licitacion', title: 'Licitacion', icon: 'unarchive', class: ''},
     { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro'},
+    { path: '/probando', title: 'probando', icon: 'unarchive', class: ''},
+    { path: '/monitorrequerimiento', title: 'MonitorRequerimiento', icon: 'unarchive', class: ''},
 
 ];
 

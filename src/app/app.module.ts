@@ -30,6 +30,8 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { RequerimientoComponent } from './component/requerimiento/requerimiento.component';
 import { LicitacionComponent } from './component/licitacion/licitacion.component';
+import { ProbandoComponent } from "./component/probando/probando.component";
+import { MonitorRequerimientosComponent } from './component/monitor-requerimientos/monitor-requerimientos.component';
 
 @NgModule({
   imports: [
@@ -49,6 +51,7 @@ import { LicitacionComponent } from './component/licitacion/licitacion.component
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    
 
   ],
   providers: [],

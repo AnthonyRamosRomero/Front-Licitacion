@@ -10,6 +10,8 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import {RequerimientoComponent} from '../../component/requerimiento/requerimiento.component';
 import {LicitacionComponent} from '../../component/licitacion/licitacion.component';
+import { ProbandoComponent } from "../../component/probando/probando.component";
+import { MonitorRequerimientosComponent } from "../../component/monitor-requerimientos/monitor-requerimientos.component"
 
 
 import {ModalComponent} from '../../component/requerimiento/modal/modal.component';
@@ -72,5 +74,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'requerimiento',   component: RequerimientoComponent},
     { path: 'licitacion',   component: LicitacionComponent},
     { path: 'modal',   component: ModalComponent},
+    { path: 'probando',   component: ProbandoComponent},
+    { path: 'monitorrequerimiento', component: MonitorRequerimientosComponent},
 
 ];

@@ -8,6 +8,8 @@ import {UserProfileComponent} from '../../user-profile/user-profile.component';
 
 import {LicitacionComponent} from '../../component/licitacion/licitacion.component';
 import {RequerimientoComponent} from '../../component/requerimiento/requerimiento.component';
+import {ProbandoComponent } from "../../component/probando/probando.component";
+import {MonitorRequerimientosComponent } from "../../component/monitor-requerimientos/monitor-requerimientos.component";
 import {ModalComponent} from '../../component/requerimiento/modal/modal.component';
 
 import {TableListComponent} from '../../table-list/table-list.component';
@@ -49,6 +51,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         UpgradeComponent,
         LicitacionComponent,
         RequerimientoComponent,
+        ProbandoComponent,
+        MonitorRequerimientosComponent,
         ModalComponent,
     ]
 })
