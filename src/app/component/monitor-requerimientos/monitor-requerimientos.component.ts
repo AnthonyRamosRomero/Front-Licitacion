@@ -27,7 +27,11 @@ export class MonitorRequerimientosComponent implements OnInit {
 
   llenaListaRequerimiento(){
     this.requerimientoService.finAll().subscribe( list => {
-      this.listaRequerimiento = list.result
+      list.result
+      .filter(o => o != null && o.dml != null && o.dml != 'D')
+      .forEach(o =>  {
+        this.listaRequerimiento.push(o)
+      })
     })
   }
 

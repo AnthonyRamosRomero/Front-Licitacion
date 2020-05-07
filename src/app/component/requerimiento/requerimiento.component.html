@@ -7,50 +7,87 @@
                         <h4 class="card-title "><b>Creacion</b> de Requerimiento</h4>
                     </div>
                     <div class="card-body">
-                        <!--FORMULARIO-->
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <!--SELECT-->
-                                    <mat-form-field>
-                                        <mat-label>AREA SOLICITANTE</mat-label>
-                                        <mat-select>
-                                            <mat-option *ngFor="let areaSolicitante of listAreas" [value]="areaSolicitante?.id">
-                                                {{areaSolicitante?.nombre}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                    <!--FIN SELECT-->
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Usuario solicitante" type="text">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <!--SELECT-->
-                                    <mat-form-field>
-                                        <mat-label>TIPO REQUERIMIENTO</mat-label>
-                                        <mat-select>
-                                            <mat-option *ngFor="let tipoRequerimiento of listTipoR" [value]="tipoRequerimiento?.id">
-                                                {{tipoRequerimiento?.descripcion}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                    <!--FIN SELECT-->
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Fecha estima de entrega" type="date">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </form>
+                        <!--ACOORDION CABECERA-->
+                        <mat-accordion>
+                            <!--DATOS DE CABECERA-->
+                            <mat-expansion-panel expanded
+                                                 (opened)="panelOpenState = true"
+                                                 (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Datos de cabecera
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <!--FORMULARIO CABECERA-->
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!--SELECT-->
+                                            <mat-form-field>
+                                                <mat-label>AREA SOLICITANTE</mat-label>
+                                                <mat-select [(ngModel)]="requerimiento.idAreaSolicitante" name="idAreaSolicitante">
+                                                    <mat-option *ngFor="let areaSolicitante of listAreas"
+                                                                [value]="areaSolicitante?.id">
+                                                        {{areaSolicitante?.nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <!--FIN SELECT-->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Usuario solicitante" [(ngModel)]="requerimiento.usuarioSolicitante" name="usuarioSolicitante" type="text">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!--SELECT-->
+                                            <mat-form-field>
+                                                <mat-label>Tipo de requerimiento</mat-label>
+                                                <mat-select [(ngModel)]="requerimiento.idTipoRequerimiento" name="idTipoRequerimiento">
+                                                    <mat-option *ngFor="let tipoRequerimiento of listTipoR"
+                                                                [value]="tipoRequerimiento?.id">
+                                                        {{tipoRequerimiento?.descripcion}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <!--FIN SELECT-->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Fecha estimada de entrega</mat-label>
+                                                <input matInput [(ngModel)]="requerimiento.fechaEstimada" name="fechaEstimada" [matDatepicker]="picker">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker touchUi #picker></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </mat-expansion-panel>
+                            <!--------------------->
+                        </mat-accordion>
+                        <!---------------------->
+
+                        <!--ACOORDION DETALLE-->
+                        <mat-accordion>
+                            <!--DATOS DE CABECERA-->
+                            <mat-expansion-panel expanded
+                                                 (opened)="panelOpenState = true"
+                                                 (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Detalle del requerimiento
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
 
 
-                        <div class="col-md-12">
+                                <div class="col-md-12">
                                     <div class="card-header">
                                         <button mat-mini-fab color="accent" (click)="openDialog()">+</button>
                                     </div>
@@ -98,410 +135,26 @@
                                             </tbody>
                                         </table>
                                     </div>
-                            <div class="card-footer">
-                                <div class="row">
+                                    <div class="card-footer">
+                                        <div class="row">
 
-                                </div>
-                                <button mat-flat-button color="primary" (click)="listaDetalleRequerimiento()">Save</button>
-                                <button mat-flat-button color="warn">Cancel</button>
-                                <button mat-flat-button color="primary">Save</button>
-                            </div>
-                        </div>
-                        <!--TABLA REQUERIMIENTO-->
-                        <!--<div class="col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-header bg-dark">
-                                        <button mat-flat-button color="accent">Accent</button>
-                                    </div>
-                                    <div class="table-responsive table-hover">
-                                        <table class="table">
-                                            <thead class=" text-primary">
-                                            <th>
-                                                ID
-                                            </th>
-                                            <th>
-                                                PRODUCTO
-                                            </th>
-                                            <th>
-                                                CANTIDAD
-                                            </th>
-                                            <th>
-                                                PRECIO UND ESTIMADO
-                                            </th>
-                                            <th>
-                                                TOTAL
-                                            </th>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    Dakota Rice
-                                                </td>
-                                                <td>
-                                                    Niger
-                                                </td>
-                                                <td>
-                                                    Oud-Turnhout
-                                                </td>
-                                                <td class="text-primary">
-                                                    $36,738
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    2
-                                                </td>
-                                                <td>
-                                                    Minerva Hooper
-                                                </td>
-                                                <td>
-                                                    Curaçao
-                                                </td>
-                                                <td>
-                                                    Sinaai-Waas
-                                                </td>
-                                                <td class="text-primary">
-                                                    $23,789
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    3
-                                                </td>
-                                                <td>
-                                                    Sage Rodriguez
-                                                </td>
-                                                <td>
-                                                    Netherlands
-                                                </td>
-                                                <td>
-                                                    Baileux
-                                                </td>
-                                                <td class="text-primary">
-                                                    $56,142
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    4
-                                                </td>
-                                                <td>
-                                                    Philip Chaney
-                                                </td>
-                                                <td>
-                                                    Korea, South
-                                                </td>
-                                                <td>
-                                                    Overland Park
-                                                </td>
-                                                <td class="text-primary">
-                                                    $38,735
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    5
-                                                </td>
-                                                <td>
-                                                    Doris Greene
-                                                </td>
-                                                <td>
-                                                    Malawi
-                                                </td>
-                                                <td>
-                                                    Feldkirchen in Kärnten
-                                                </td>
-                                                <td class="text-primary">
-                                                    $63,542
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    6
-                                                </td>
-                                                <td>
-                                                    Mason Porter
-                                                </td>
-                                                <td>
-                                                    Chile
-                                                </td>
-                                                <td>
-                                                    Gloucester
-                                                </td>
-                                                <td class="text-primary">
-                                                    $78,615
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                        </div>
+                                        <button mat-flat-button color="primary" (click)="saveRequerimiento()">Save
+                                        </button>
+                                        <button mat-flat-button color="warn">Cancel</button>
+                                        <button mat-flat-button color="primary">Save</button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>-->
+
+
+                            </mat-expansion-panel>
+                            <!--------------------->
+                        </mat-accordion>
+                        <!--------------------->
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-<!--
-<div class="main-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Datos generales</h4>
-                        <p class="card-category">Informacio</p>
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Fist Name" type="text">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Last Name" type="text">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Fist Name" type="text">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Last Name" type="text">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Fist Name" type="text">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Last Name" type="text">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
-                            <div class="clearfix"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header card-header-danger">
-                    <h4 class="card-title ">Monitor de requerimientos</h4>
-                    <p class="card-category">Lista de solicitudes</p>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive table-hover">
-                        <table class="table">
-                            <thead class=" text-primary">
-                            <th>
-                                ID
-                            </th>
-                            <th>
-                                Nombre
-                            </th>
-                            <th>
-                                Descripcion
-                            </th>
-                            <th>
-                                Area Solicitante
-                            </th>
-                            <th>
-                                Fecha Solicitud
-                            </th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    Dakota Rice
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Oud-Turnhout
-                                </td>
-                                <td class="text-primary">
-                                    $36,738
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    Minerva Hooper
-                                </td>
-                                <td>
-                                    Curaçao
-                                </td>
-                                <td>
-                                    Sinaai-Waas
-                                </td>
-                                <td class="text-primary">
-                                    $23,789
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    3
-                                </td>
-                                <td>
-                                    Sage Rodriguez
-                                </td>
-                                <td>
-                                    Netherlands
-                                </td>
-                                <td>
-                                    Baileux
-                                </td>
-                                <td class="text-primary">
-                                    $56,142
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    4
-                                </td>
-                                <td>
-                                    Philip Chaney
-                                </td>
-                                <td>
-                                    Korea, South
-                                </td>
-                                <td>
-                                    Overland Park
-                                </td>
-                                <td class="text-primary">
-                                    $38,735
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    5
-                                </td>
-                                <td>
-                                    Doris Greene
-                                </td>
-                                <td>
-                                    Malawi
-                                </td>
-                                <td>
-                                    Feldkirchen in Kärnten
-                                </td>
-                                <td class="text-primary">
-                                    $63,542
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    6
-                                </td>
-                                <td>
-                                    Mason Porter
-                                </td>
-                                <td>
-                                    Chile
-                                </td>
-                                <td>
-                                    Gloucester
-                                </td>
-                                <td class="text-primary">
-                                    $78,615
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-</div>
--->
-
-<!--********************************MODAL********************************-->
-<!-- Modal -->
-<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            &lt;!&ndash;HEADER&ndash;&gt;
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar producto al requerimiento</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            &lt;!&ndash;CUERPO DEL MODAL&ndash;&gt;
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-md-6">
-                            &lt;!&ndash;SELECT&ndash;&gt;
-                            <select class="custom-select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                            &lt;!&ndash;FIN SELECT&ndash;&gt;
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Cantidad" type="number">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Precio Unitario Estimado" type="number">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Precio Total Estimado" disabled="true" type="number">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button mat-flat-button color="primary">Agregar</button>
-            </div>
-        </div>
-    </div>
-</div>-->

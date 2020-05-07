@@ -24,7 +24,7 @@ export class ProbandoComponent implements OnInit {
   /*  Metodos */
   llenaListaProducto (){
     this.productoService.finAll().subscribe(list => {
-      this.listaproducto = list.result
+      this.listaproducto = list.result /* [0a].categoria */
     })
   }
    
