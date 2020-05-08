@@ -19,13 +19,7 @@ import {
 } from '@agm/core';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-<<<<<<< HEAD
-import { RequerimientoComponent } from './component/requerimiento/requerimiento.component';
-import { LicitacionComponent } from './component/licitacion/licitacion.component';
-import { ProbandoComponent } from "./component/probando/probando.component";
-import { MonitorRequerimientosComponent } from './component/monitor-requerimientos/monitor-requerimientos.component';
-=======
->>>>>>> bb24bc613226cf3e682dfafd0c8a35740fe180bd
+
 
 @NgModule({
   imports: [

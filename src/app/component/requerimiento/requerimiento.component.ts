@@ -17,18 +17,12 @@ import {DetalleRequerimientoService} from '../../service/DetalleReuquerimiento/d
 })
 export class RequerimientoComponent implements OnInit {
 
-<<<<<<< HEAD
-  listDetalleRequerimiento: DetalleRequerimiento[] = new Array
-=======
-
-  ppp: Requerimiento[] = new Array()
-
-
+  
   /*Requerimiento*/
   requerimiento: Requerimiento = new Requerimiento()
   /*Detalle Requerimiento*/
-  listDetalleRequerimiento: DetalleRequerimiento[]
->>>>>>> bb24bc613226cf3e682dfafd0c8a35740fe180bd
+  listDetalleRequerimiento: DetalleRequerimiento[] = new Array
+  
 
   /*Combos*/
   listAreas: AreaSolicitante[]
@@ -36,6 +30,7 @@ export class RequerimientoComponent implements OnInit {
 
   /*Para el acordion*/
   panelOpenState = true;
+  
 
   constructor(
       public dialog: MatDialog,
@@ -85,9 +80,7 @@ export class RequerimientoComponent implements OnInit {
 
   saveDetalleRequerimiento() {
     console.log(this.listDetalleRequerimiento)
-    this.requerimientoService.finAll().subscribe(jajaja => {
-      this.ppp = jajaja.result
-    })
+    
   }
 
   async generateRequerimiento() {
