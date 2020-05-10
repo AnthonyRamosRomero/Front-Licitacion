@@ -6,6 +6,11 @@ import {TipoRequerimientoService} from '../../service/TipoRequerimiento/tipo-req
 import {TipoRequerimiento} from '../../models/entities/tipo-requerimiento';
 import { AreaSolicitanteService} from '../../service/AreaSolicitante/area-solicitante.service'
 import { AreaSolicitante } from '../../models/entities/area-solicitante';
+import { Producto } from 'app/models/entities/producto';
+import { ProductoService } from 'app/service/Producto/producto.service';
+import { ModalComponent } from '../requerimiento/modal/modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalRequerimientoComponent } from './ModalMonitorRequerimiento/modal-requerimiento/modal-requerimiento.component';
 
 @Component({
   selector: 'app-monitor-requerimientos',
@@ -15,9 +20,12 @@ import { AreaSolicitante } from '../../models/entities/area-solicitante';
 export class MonitorRequerimientosComponent implements OnInit {
 
   listaRequerimiento : Requerimiento[] = new Array
+  listaRequerimientoProducto : Producto[] = new Array 
 
 
-  constructor(private requerimientoService: RequerimientoService) { 
+  constructor(public dialog: MatDialog,
+              private requerimientoService: RequerimientoService,
+              private productoService : ProductoService) { 
 
   }
 
@@ -27,12 +35,20 @@ export class MonitorRequerimientosComponent implements OnInit {
 
   llenaListaRequerimiento(){
     this.requerimientoService.finAll().subscribe( list => {
+      console.log(list.result)
       list.result
       .filter(o => o != null && o.dml != null && o.dml != 'D')
       .forEach(o =>  {
+        let data = new Requerimiento
         this.listaRequerimiento.push(o)
       })
     })
+    console.log(this.listaRequerimiento)
+  }
+
+  openDialog() {
+    this.dialog.open(ModalRequerimientoComponent);
+    console.log(this.listaRequerimiento);
   }
 
 }

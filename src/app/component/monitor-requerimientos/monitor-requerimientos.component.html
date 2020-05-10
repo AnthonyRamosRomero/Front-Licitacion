@@ -34,53 +34,55 @@
                                             </th>                                            
                                             </thead>
                                             <tbody>
+                                               <!--
                                                 <tr>
                                                     <td>
-                                                       1
+                                                       
                                                     </td>
                                                     <td>
-                                                        probando1
+                                                        
                                                     </td>
                                                     <td>
-                                                        probando1
+                                                        
                                                     </td>
                                                     <td>
-                                                        probando1
+                                                        
                                                     </td>
                                                     <td>
-                                                        probando1
+                                                        
                                                     </td>
                                                     <td>
-                                                        probando1
+                                                        
                                                     </td>
                                                     <div class="card-header">
                                                         <button mat-mini-fab color="accent" (click)="openDialog()">+</button>
                                                     </div>
                                                 </tr>
-                                            <!--
+                                            -->
+                                            
                                             <tr *ngFor="let requerimiento of listaRequerimiento">
                                                 <td>
-                                                    {{requerimiento.id}}
+                                                    {{requerimiento?.id}}
                                                 </td>
                                                 <td>
-                                                    {{requerimiento.idTipoRequerimiento}}
+                                                    {{requerimiento?.tipoRequerimiento.descripcion}}
                                                 </td>
                                                 <td>
-                                                    {{requerimiento.idAreaSolicitante}}
+                                                    {{requerimiento?.areaSolicitante.nombre}}
                                                 </td>
                                                 <td>
-                                                    {{requerimiento.usuarioSolicitante}}
+                                                    {{requerimiento?.usuarioSolicitante}}
                                                 </td>
                                                 <td>
-                                                    {{requerimiento.fechaSolicitud}}
+                                                    {{requerimiento?.fechaSolicitud}}
                                                 </td>
                                                 <td>
-                                                    {{requerimiento.fechaEstimada}}
+                                                    {{requerimiento?.fechaEstimadaEntrante}}
                                                 </td>
                                                 <td>
-                                                    asdasd
+                                                    <button mat-mini-fab color="accent" (click)="openDialog()">+</button>
                                                 </td>
-                                            </tr>-->
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>

@@ -26,7 +26,7 @@ export class RequerimientoService {
 
   /***************METHODS***************/
   finAll() {
-    return this.http.get<ResponseEntity<Requerimiento[]>>(this.getUrlService('listRequeriment'), httpOptions);
+    return this.http.get<ResponseEntity<Requerimiento[]>>(this.getUrlService('listRequirement'), httpOptions);
   }
 
   save(requerimiento: Requerimiento) {

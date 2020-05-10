@@ -4,12 +4,13 @@ import {BasicEntity} from './basic-entity';
 
 export class Requerimiento extends BasicEntity {
 
+    
     id: number
-    idTipoRequerimiento: number
+    tipoRequerimientoId: number
     tipoRequerimiento: TipoRequerimiento
-    idAreaSolicitante: number
+    areaSolicitanteId: number
     areaSolicitante: AreaSolicitante
     usuarioSolicitante: string
     fechaSolicitud: Date
-    fechaEstimada: Date
+    fechaEstimadaEntrante: string
 }
