@@ -7,8 +7,8 @@
                 <!--SELECT-->
                 <mat-form-field>
                     <mat-label>Producto</mat-label>
-                    <mat-select [(ngModel)]="detalleRequerimiento.productoId"  name="productoId">
-                        <mat-option *ngFor="let producto of listProducts"  [value]="producto.id">
+                    <mat-select [(ngModel)]="producto"  name="producto">
+                        <mat-option *ngFor="let producto of listProducts"  [value]="producto">
                             {{producto?.nombre}}
                         </mat-option>
                     </mat-select>

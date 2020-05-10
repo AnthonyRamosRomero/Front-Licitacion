@@ -33,4 +33,8 @@ export class DetalleRequerimientoService {
   save(detalleRequerimiento: DetalleRequerimiento) {
     return this.http.post<ResponseEntity<DetalleRequerimiento>>(this.getUrlService('savedetallerequerimiento'), detalleRequerimiento, httpOptions);
   }
+
+  saveAll(listDetalleRequerimiento: DetalleRequerimiento[]) {
+    return this.http.post<ResponseEntity<DetalleRequerimiento[]>>(this.getUrlService('saveListDetalleRequerimiento'), listDetalleRequerimiento, httpOptions)
+  }
 }

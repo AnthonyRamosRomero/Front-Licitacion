@@ -27,7 +27,8 @@
                                             <!--SELECT-->
                                             <mat-form-field>
                                                 <mat-label>AREA SOLICITANTE</mat-label>
-                                                <mat-select [(ngModel)]="requerimiento.idAreaSolicitante" name="idAreaSolicitante">
+                                                <mat-select [(ngModel)]="requerimiento.areaSolicitanteId"
+                                                            name="idAreaSolicitante">
                                                     <mat-option *ngFor="let areaSolicitante of listAreas"
                                                                 [value]="areaSolicitante?.id">
                                                         {{areaSolicitante?.nombre}}
@@ -38,7 +39,9 @@
                                         </div>
                                         <div class="col-md-6">
                                             <mat-form-field class="example-full-width">
-                                                <input matInput placeholder="Usuario solicitante" [(ngModel)]="requerimiento.usuarioSolicitante" name="usuarioSolicitante" type="text">
+                                                <input matInput placeholder="Usuario solicitante"
+                                                       [(ngModel)]="requerimiento.usuarioSolicitante"
+                                                       name="usuarioSolicitante" type="text">
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -47,7 +50,8 @@
                                             <!--SELECT-->
                                             <mat-form-field>
                                                 <mat-label>Tipo de requerimiento</mat-label>
-                                                <mat-select [(ngModel)]="requerimiento.idTipoRequerimiento" name="idTipoRequerimiento">
+                                                <mat-select [(ngModel)]="requerimiento.tipoRequerimientoId"
+                                                            name="idTipoRequerimiento">
                                                     <mat-option *ngFor="let tipoRequerimiento of listTipoR"
                                                                 [value]="tipoRequerimiento?.id">
                                                         {{tipoRequerimiento?.descripcion}}
@@ -59,7 +63,8 @@
                                         <div class="col-md-6">
                                             <mat-form-field class="example-full-width">
                                                 <mat-label>Fecha estimada de entrega</mat-label>
-                                                <input matInput [(ngModel)]="requerimiento.fechaEstimada" name="fechaEstimada" [matDatepicker]="picker">
+                                                <input matInput [(ngModel)]="requerimiento.fechaEstimadaEntrante"
+                                                       name="fechaEstimada" [matDatepicker]="picker">
                                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                                 <mat-datepicker touchUi #picker></mat-datepicker>
                                             </mat-form-field>
@@ -86,7 +91,7 @@
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
 
-
+                                <!--Content-->
                                 <div class="col-md-12">
                                     <div class="card-header">
                                         <button mat-mini-fab color="accent" (click)="openDialog()">+</button>
@@ -116,7 +121,7 @@
                                                     {{detalleRequerimiento.id}}
                                                 </td>
                                                 <td>
-                                                    {{detalleRequerimiento.productoId}}
+                                                    {{detalleRequerimiento.producto.nombre}}
                                                 </td>
                                                 <td>
                                                     {{detalleRequerimiento.cantidadSolicitada}}
@@ -128,9 +133,6 @@
                                                 <td>
                                                     {{detalleRequerimiento.precioTotalEstimado}}
                                                 </td>
-                                                <td class="text-primary">
-                                                    $36,738
-                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -139,10 +141,8 @@
                                         <div class="row">
 
                                         </div>
-                                        <button mat-flat-button color="primary" (click)="saveRequerimiento()">Save
+                                        <button mat-flat-button color="primary" (click)="generateRequerimiento()">Save
                                         </button>
-                                        <button mat-flat-button color="warn">Cancel</button>
-                                        <button mat-flat-button color="primary">Save</button>
                                     </div>
                                 </div>
 

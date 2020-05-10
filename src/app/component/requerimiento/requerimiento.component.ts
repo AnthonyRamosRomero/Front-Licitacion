@@ -80,13 +80,29 @@ export class RequerimientoComponent implements OnInit {
 
   saveDetalleRequerimiento() {
     console.log(this.listDetalleRequerimiento)
-    
   }
 
-  async generateRequerimiento() {
+  public async generateRequerimiento() {
+    let r: Requerimiento
+    console.log(this.requerimiento)
     await this.requerimientoService.save(this.requerimiento).subscribe( response => {
-      this.requerimiento = response.result
+      r = response.result
+      this.listDetalleRequerimiento.forEach( list => {
+        list.requerimientoId = r.id
+        list.productoId = list.producto.id
+        debugger
+      })
+
+/*      this.detalleRequerimientoService.saveAll(this.listDetalleRequerimiento).subscribe( o => {
+        console.log(response.result)
+        console.log(o.result);
+      })*/
+
+      this.detalleRequerimientoService.saveAll(this.listDetalleRequerimiento).subscribe(data => {
+        console.log(data.result)
+      })
     })
+
   }
 
 }
