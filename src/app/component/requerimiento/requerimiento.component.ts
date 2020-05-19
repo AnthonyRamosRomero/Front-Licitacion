@@ -9,6 +9,8 @@ import {DetalleRequerimiento} from '../../models/entities/detalle-requerimiento'
 import {Requerimiento} from '../../models/entities/requerimiento';
 import {RequerimientoService} from '../../service/requerimiento/requerimiento.service';
 import {DetalleRequerimientoService} from '../../service/DetalleReuquerimiento/detalle-requerimiento.service';
+import {MonitorRequerimientoService} from '../../service/MonitorRequerimiento/monitor-requerimiento.service';
+import {MonitorRequerimientoDTO} from '../../models/dto/monitor-requerimiento-dto';
 
 @Component({
   selector: 'app-requerimiento',
@@ -16,13 +18,12 @@ import {DetalleRequerimientoService} from '../../service/DetalleReuquerimiento/d
   styleUrls: ['./requerimiento.component.css']
 })
 export class RequerimientoComponent implements OnInit {
-
-  
+    
   /*Requerimiento*/
   requerimiento: Requerimiento = new Requerimiento()
   /*Detalle Requerimiento*/
   listDetalleRequerimiento: DetalleRequerimiento[] = new Array
-  
+    
 
   /*Combos*/
   listAreas: AreaSolicitante[]
@@ -30,14 +31,17 @@ export class RequerimientoComponent implements OnInit {
 
   /*Para el acordion*/
   panelOpenState = true;
-  
+
+  /*MonitorRequerimiento*/
+  monitorRequerimiento: MonitorRequerimientoDTO = new MonitorRequerimientoDTO()
 
   constructor(
       public dialog: MatDialog,
       private areaSolicitanteService: AreaSolicitanteService,
       private tipoRequerimientoService: TipoRequerimientoService,
       private requerimientoService: RequerimientoService,
-      private detalleRequerimientoService: DetalleRequerimientoService
+      private detalleRequerimientoService: DetalleRequerimientoService,
+      private monitorRequerimientoService: MonitorRequerimientoService
   ) {}
 
 
@@ -82,27 +86,16 @@ export class RequerimientoComponent implements OnInit {
     console.log(this.listDetalleRequerimiento)
   }
 
-  public async generateRequerimiento() {
-    let r: Requerimiento
-    console.log(this.requerimiento)
-    await this.requerimientoService.save(this.requerimiento).subscribe( response => {
-      r = response.result
-      this.listDetalleRequerimiento.forEach( list => {
-        list.requerimientoId = r.id
-        list.productoId = list.producto.id
-        debugger
-      })
 
-/*      this.detalleRequerimientoService.saveAll(this.listDetalleRequerimiento).subscribe( o => {
-        console.log(response.result)
-        console.log(o.result);
-      })*/
-
-      this.detalleRequerimientoService.saveAll(this.listDetalleRequerimiento).subscribe(data => {
-        console.log(data.result)
-      })
-    })
-
+  async generateRequerimiento() {
+      try {
+          this.monitorRequerimiento.requerimiento = this.requerimiento
+          this.monitorRequerimiento.detalleRequerimiento = this.listDetalleRequerimiento
+          this.monitorRequerimientoService.save(this.monitorRequerimiento).subscribe(result => {
+              console.log(result.result)
+          })
+      } catch (e) {
+          console.log(e)
+      }
   }
-
 }

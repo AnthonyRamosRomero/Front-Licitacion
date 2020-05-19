@@ -8,6 +8,9 @@ exports.config = {
   specs: [
     './e2e/**/*.e2e-spec.ts'
   ],
+  /*ASYNC AWAIT*/
+  SELENIUM_PROMISE_MANAGER: false,
+
   capabilities: {
     'browserName': 'chrome'
   },
