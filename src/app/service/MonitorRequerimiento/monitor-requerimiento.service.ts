@@ -21,12 +21,13 @@ export class MonitorRequerimientoService {
   constructor(private http: HttpClient) { }
 
   getUrlService(metodo: string) {
-    let url = this.perfil === 'local' ? 'http://localhost:61444/api/v1/MonitorRequerimiento/' : '';
+    let url = this.perfil === 'local' ? 'http://localhost:61444/api/v1/Requerimiento/' : '';
     url = url + metodo;
     return url;
   }
 
   save(monitorRequerimiento: MonitorRequerimientoDTO) {
+    debugger
     return this.http.post<ResponseEntity<MonitorRequerimientoDTO>>(
         this.getUrlService('saveMonitorRequerimiento'),
         monitorRequerimiento,

@@ -35,8 +35,8 @@ export class ModalComponent implements OnInit {
   }
 
   addProducto() {
-    debugger
     this.detalleRequerimiento.producto = this.producto
+    this.detalleRequerimiento.productoId = this.producto.id
     ModalComponent.listDetalleRequerimiento.push(this.detalleRequerimiento)
   }
 

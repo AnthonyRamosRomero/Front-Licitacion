@@ -91,6 +91,7 @@ export class RequerimientoComponent implements OnInit {
       try {
           this.monitorRequerimiento.requerimiento = this.requerimiento
           this.monitorRequerimiento.detalleRequerimiento = this.listDetalleRequerimiento
+        debugger;
           this.monitorRequerimientoService.save(this.monitorRequerimiento).subscribe(result => {
               console.log(result.result)
           })
