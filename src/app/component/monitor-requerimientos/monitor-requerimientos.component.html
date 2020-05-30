@@ -59,16 +59,15 @@
                                                     </div>
                                                 </tr>
                                             -->
-                                            
                                             <tr *ngFor="let requerimiento of listaRequerimiento">
                                                 <td>
                                                     {{requerimiento?.id}}
                                                 </td>
                                                 <td>
-                                                    {{requerimiento?.tipoRequerimiento.descripcion}}
+                                                    {{requerimiento?.tipoRequerimiento?.descripcion}}
                                                 </td>
                                                 <td>
-                                                    {{requerimiento?.areaSolicitante.nombre}}
+                                                    {{requerimiento?.areaSolicitante?.nombre}}
                                                 </td>
                                                 <td>
                                                     {{requerimiento?.usuarioSolicitante}}
@@ -80,7 +79,7 @@
                                                     {{requerimiento?.fechaEstimadaEntrante}}
                                                 </td>
                                                 <td>
-                                                    <button mat-mini-fab color="accent" (click)="openDialog()">+</button>
+                                                    <button mat-mini-fab color="accent" (click)="openDialog(requerimiento.id)">+</button>
                                                 </td>
                                             </tr>
                                             </tbody>

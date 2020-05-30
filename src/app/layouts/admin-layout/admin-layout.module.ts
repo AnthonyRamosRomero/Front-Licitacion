@@ -8,9 +8,11 @@ import {UserProfileComponent} from '../../user-profile/user-profile.component';
 
 import {LicitacionComponent} from '../../component/licitacion/licitacion.component';
 import {RequerimientoComponent} from '../../component/requerimiento/requerimiento.component';
-import {ProbandoComponent } from "../../component/probando/probando.component";
-import {MonitorRequerimientosComponent } from "../../component/monitor-requerimientos/monitor-requerimientos.component";
+import {ProbandoComponent} from '../../component/probando/probando.component';
+import {MonitorRequerimientosComponent} from '../../component/monitor-requerimientos/monitor-requerimientos.component';
 import {ModalComponent} from '../../component/requerimiento/modal/modal.component';
+import {ModalRequerimientoComponent} from '../../component/monitor-requerimientos/ModalMonitorRequerimiento/modal-requerimiento/modal-requerimiento.component';
+
 
 import {TableListComponent} from '../../table-list/table-list.component';
 import {TypographyComponent} from '../../typography/typography.component';
@@ -61,6 +63,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
         ProbandoComponent,
         MonitorRequerimientosComponent,
         ModalComponent,
+        ModalRequerimientoComponent,
+
     ]
 })
 
