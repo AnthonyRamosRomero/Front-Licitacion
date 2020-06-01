@@ -1,35 +1,35 @@
 import {Component, OnInit} from '@angular/core';
 import {Requerimiento} from 'app/models/entities/requerimiento';
 import {RequerimientoService} from 'app/service/requerimiento/requerimiento.service';
-import {THIS_EXPR} from '@angular/compiler/src/output/output_ast';
-import {TipoRequerimientoService} from '../../service/TipoRequerimiento/tipo-requerimiento.service';
-import {TipoRequerimiento} from '../../models/entities/tipo-requerimiento';
-import {AreaSolicitanteService} from '../../service/AreaSolicitante/area-solicitante.service'
-import {AreaSolicitante} from '../../models/entities/area-solicitante';
 import {Producto} from 'app/models/entities/producto';
 import {ProductoService} from 'app/service/Producto/producto.service';
-import {ModalComponent} from '../requerimiento/modal/modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalRequerimientoComponent} from './ModalMonitorRequerimiento/modal-requerimiento/modal-requerimiento.component';
+
+// @ts-ignore
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-monitor-requerimientos',
     templateUrl: './monitor-requerimientos.component.html',
     styleUrls: ['./monitor-requerimientos.component.css']
 })
+
 export class MonitorRequerimientosComponent implements OnInit {
 
     listaRequerimiento: Requerimiento[] = []
     listaRequerimientoProducto: Producto[] = []
-    
+
     constructor(public dialog: MatDialog,
                 private requerimientoService: RequerimientoService,
-                private productoService: ProductoService) {
-
+                private productoService: ProductoService,
+                private cookieService: CookieService
+    ) {
     }
 
     ngOnInit(): void {
         this.llenaListaRequerimiento()
+        this.setUserSession()
     }
 
     llenaListaRequerimiento() {
@@ -49,5 +49,13 @@ export class MonitorRequerimientosComponent implements OnInit {
 
         this.dialog.open(ModalRequerimientoComponent);
         console.log(this.listaRequerimiento);
+    }
+
+    setUserSession() {
+        this.cookieService.set('user', 'Anthony')
+    }
+
+    getUserSession() {
+        console.log(this.cookieService.get('user'))
     }
 }

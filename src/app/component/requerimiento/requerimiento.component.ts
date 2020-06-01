@@ -105,6 +105,19 @@ export class RequerimientoComponent implements OnInit {
         }
     }
 
+    clearModels() {
+        this.requerimiento = new Requerimiento()
+        this.listDetalleRequerimiento = []
+    }
+
+
+
+
+
+
+
+
+
     showNotification(from, align, mensaje, type) {
         // const type = ['', 'info', 'success', 'warning', 'danger'];
         $.notify({
@@ -128,10 +141,5 @@ export class RequerimientoComponent implements OnInit {
                 '<a href="{3}" target="{4}" data-notify="url"></a>' +
                 '</div>'
         });
-    }
-
-    clearModels() {
-        this.requerimiento = new Requerimiento()
-        this.listDetalleRequerimiento = []
     }
 }

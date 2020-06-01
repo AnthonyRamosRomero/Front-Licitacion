@@ -30,6 +30,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatExpansionModule} from '@angular/material/expansion';
 
+// @ts-ignore
+import {CookieService} from 'ngx-cookie-service'; /*Cookies*/
+
 @NgModule({
     imports: [
         CommonModule,
@@ -65,7 +68,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
         ModalComponent,
         ModalRequerimientoComponent,
 
-    ]
+    ],
+    providers: [CookieService]
 })
 
 export class AdminLayoutModule {
