@@ -1,0 +1,2 @@
+npm rm -rf node_modules && npm install /*UNISTALL AND INSTALL NPM*/
+npm install ngx-cookie-service --save  /*INSTALL*/

@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Agregar Productos</h2>
+<mat-dialog-content class="mat-typography">
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <!--SELECT-->
+                <mat-form-field>
+                    <mat-label>Producto</mat-label>
+                    <mat-select [(ngModel)]="producto"  name="producto">
+                        <mat-option *ngFor="let producto of listProducts"  [value]="producto">
+                            {{producto?.nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!--FIN SELECT-->
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Cantidad" [(ngModel)]="detalleRequerimiento.cantidadSolicitada" name="cantidadSolicitada" type="number" (keyup)="calculaTotalEstimado()">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Precio Unitario Estimado" [(ngModel)]="detalleRequerimiento.precioUnitarioEstimado" name="precioUnitariosEstimado" type="number" (keyup)="calculaTotalEstimado()">
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Precio Total Estimado" [(ngModel)]="detalleRequerimiento.precioTotalEstimado" name="precioTotalEstimado" disabled="true" type="number">
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button mat-dialog-close color="primary" (click)="addProducto()">Agregar</button>
+</mat-dialog-actions>

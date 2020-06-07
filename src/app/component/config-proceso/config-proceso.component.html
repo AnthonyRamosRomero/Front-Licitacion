@@ -1,0 +1,177 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <button mat-raised-button type="button" matTooltip="Guardar "
+                            [matTooltipPosition]="'above'"
+                            (click)="getValueCheck()"
+                            class="btn btn-primary btn-link btn-sm btn-just-icon">
+
+                        <i class="material-icons">save</i>
+                    </button>
+                    <label class="text-dark">Guardar configuracion del proceso</label>
+
+                </div>
+
+                <mat-accordion>
+                    <!--DATOS DE CABECERA-->
+                    <mat-expansion-panel expanded
+                                         (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <b class="text-danger">Configuracion general</b>
+                            </mat-panel-title>
+                            <mat-panel-description>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                        <!--Content-->
+                        <div class="card">
+                            <div class="card-header card-header-tabs card-header-primary">
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper">
+                                        <ul class="nav nav-tabs" data-tabs="tabs">
+                                            <li class="nav-item">
+                                                <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+                                                    <i class="material-icons">build</i> Configuración
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="profile">
+                                        <table class="table">
+                                            <tbody>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input"
+                                                                   [(ngModel)]="tieneRFI"
+                                                                   type="checkbox"
+                                                                   (change)="getValueCheck()">
+                                                            <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                        </label>
+                                                    </div>
+
+                                                </td>
+                                                <td>¿Iniciar proceso con Ronda RFI?</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input"
+                                                                   type="checkbox"
+                                                                   value=""
+                                                                    [(ngModel)]="notificarParticipantes"
+                                                                    (change)="getValueCheck()">
+                                                            <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>¿Notificar a los participantes?</td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input"
+                                                                   type="checkbox" value=""
+                                                                   [(ngModel)]="tieneVisitaTecnica"
+                                                                    (change)="getValueCheck()">
+                                                            <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>¿El proceso tendra visita de campo?</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </mat-expansion-panel>
+                    <!--------------------->
+                </mat-accordion>
+                <!--------------------->
+
+                <mat-accordion>
+                    <!--DATOS DE CABECERA-->
+                    <mat-expansion-panel expanded
+                                         (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <b class="text-danger">Participantes</b>
+                            </mat-panel-title>
+                            <mat-panel-description>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                        <!--Content-->
+                        <div class="mat-elevation-z8">
+                            <table mat-table [dataSource]="dataSource">
+
+                                <ng-container matColumnDef="isSelected">
+                                    <th mat-header-cell *matHeaderCellDef></th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <mat-checkbox [(ngModel)]="element.isSelected"></mat-checkbox>
+                                    </td>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef="razonSocial">
+                                    <th mat-header-cell *matHeaderCellDef> Razon Social</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.razonSocial}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="ruc">
+                                    <th mat-header-cell *matHeaderCellDef> Numero de RUC</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.numeroRuc}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="contacto">
+                                    <th mat-header-cell *matHeaderCellDef> Contacto</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.contacto}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="correo">
+                                    <th mat-header-cell *matHeaderCellDef> Correo</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.mails}} </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+
+                            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                        </div>
+
+
+                    </mat-expansion-panel>
+                    <!--------------------->
+                </mat-accordion>
+                <!--------------------->
+            </div>
+        </div>
+    </div>
+</div>

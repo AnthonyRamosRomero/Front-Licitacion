@@ -1,0 +1,65 @@
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">content_copy</i>
+                        </div>
+                        <h3 class="card-title">LISTA DE PRODUCTOS</h3>
+                    </div>
+                    <div class="card-body">
+                        <!--FORMULARIO-->
+
+
+                        <div class="col-md-12">
+                                    <div class="table-responsive table-hover">
+                                        <table class="table">
+                                            <thead class=" text-primary">
+                                            <th>
+                                                ID
+                                            </th>
+                                            <th>
+                                                NOMBRE
+                                            </th>
+                                            <th>
+                                                UNIDADMEDIDA
+                                            </th>
+                                            <th>
+                                                DESCRIPCION
+                                            </th>
+                                            <th>
+                                                CATEGORIA
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let Producto of listaproducto">
+                                                <td>
+                                                    {{Producto.id}}
+                                                </td>
+                                                <td>
+                                                    {{Producto.nombre}}
+                                                </td>
+                                                <td>
+                                                    {{Producto.unidadMedida}}
+                                                </td>
+                                                <td>
+                                                    {{Producto.descripcion}}
+                                                </td>
+
+                                                <td>
+                                                    {{Producto?.categoria?.nombre}}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

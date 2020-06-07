@@ -1,0 +1,167 @@
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">
+                            <span class="material-icons">request_quote</span>
+                            Creacion de requerimiento
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <!--ACOORDION CABECERA-->
+                        <mat-accordion>
+                            <!--DATOS DE CABECERA-->
+                            <mat-expansion-panel expanded
+                                                 (opened)="panelOpenState = true"
+                                                 (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Datos de cabecera
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <!--FORMULARIO CABECERA-->
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!--SELECT-->
+                                            <mat-form-field>
+                                                <mat-label>AREA SOLICITANTE</mat-label>
+                                                <mat-select [(ngModel)]="requerimiento.areaSolicitanteId"
+                                                            name="idAreaSolicitante">
+                                                    <mat-option *ngFor="let areaSolicitante of listAreas"
+                                                                [value]="areaSolicitante?.id">
+                                                        {{areaSolicitante?.nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <!--FIN SELECT-->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Usuario solicitante"
+                                                       [(ngModel)]="requerimiento.usuarioSolicitante"
+                                                       name="usuarioSolicitante" type="text">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!--SELECT-->
+                                            <mat-form-field>
+                                                <mat-label>Tipo de requerimiento</mat-label>
+                                                <mat-select [(ngModel)]="requerimiento.tipoRequerimientoId"
+                                                            name="idTipoRequerimiento">
+                                                    <mat-option *ngFor="let tipoRequerimiento of listTipoR"
+                                                                [value]="tipoRequerimiento?.id">
+                                                        {{tipoRequerimiento?.descripcion}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <!--FIN SELECT-->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Fecha estimada de entrega</mat-label>
+                                                <input matInput [(ngModel)]="requerimiento.fechaEstimadaEntrante"
+                                                       name="fechaEstimada" [matDatepicker]="picker">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker touchUi #picker></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </mat-expansion-panel>
+                            <!--------------------->
+                        </mat-accordion>
+                        <!---------------------->
+
+                        <!--ACOORDION DETALLE-->
+                        <mat-accordion>
+                            <!--DATOS DE CABECERA-->
+                            <mat-expansion-panel expanded
+                                                 (opened)="panelOpenState = true"
+                                                 (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Detalle del requerimiento
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+
+                                <!--Content-->
+                                <div class="col-md-12">
+                                    <div class="card-header">
+                                        <button mat-mini-fab color="accent" (click)="openDialog()">
+                                            <span class="material-icons">add</span>
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive table-hover">
+                                        <table class="table">
+                                            <thead class=" text-primary">
+                                            <th>
+                                                CATEGORIA
+                                            </th>
+                                            <th>
+                                                PRODUCTO
+                                            </th>
+                                            <th>
+                                                CANTIDAD
+                                            </th>
+                                            <th>
+                                                PRECIO UND ESTIMADO
+                                            </th>
+                                            <th>
+                                                TOTAL
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let detalleRequerimiento of listDetalleRequerimiento">
+                                                <td>
+                                                    {{detalleRequerimiento?.producto?.categoria?.nombre}}
+                                                </td>
+                                                <td>
+                                                    {{detalleRequerimiento?.producto?.nombre}}
+                                                </td>
+                                                <td>
+                                                    {{detalleRequerimiento?.cantidadSolicitada}}
+                                                </td>
+                                                <td>
+                                                    {{detalleRequerimiento?.precioUnitarioEstimado}}
+                                                </td>
+
+                                                <td>
+                                                    {{detalleRequerimiento?.precioTotalEstimado}}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <button mat-flat-button color="primary" (click)="generateRequerimiento()">
+                                                Save
+                                            </button>
+                                            &nbsp;
+                                            <button mat-flat-button color="accent" (click)="clearModels()">Cancelar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </mat-expansion-panel>
+                            <!--------------------->
+                        </mat-accordion>
+                        <!--------------------->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
