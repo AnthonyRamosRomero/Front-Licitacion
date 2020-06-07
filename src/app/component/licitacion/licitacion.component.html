@@ -12,23 +12,114 @@
                         </ng-template>
                         <!--CONTENIDO-->
 
-                        <div class="card card-stats">
-                            <div class="card-header card-header-warning card-header-icon">
-                                <div class="card-icon">
-                                    <i class="material-icons">content_copy</i>
+                        <mat-accordion>
+                            <!--DATOS DE CABECERA-->
+                            <mat-expansion-panel expanded
+                                                 (opened)="panelOpenState = true"
+                                                 (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <b class="text-primary">Configuracion Inicial</b>
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+
+                                <!--Content-->
+                                <!--TIENE RFI ?-->
+                                <div class="row">
+                                    <div class="col">
+                                        <b>Tiene RFI?</b>
+                                        <mat-slide-toggle disabled [(ngModel)]="tieneRFI"></mat-slide-toggle>
+                                    </div>
+
+                                    <div class="col">
+                                        <b>Participantes notificados?</b>
+                                        <mat-slide-toggle disabled [(ngModel)]="participantesNotificados"></mat-slide-toggle>
+                                    </div>
+
+                                    <div class="col">
+                                        <b>Tiene visita técnica?</b>
+                                        <mat-slide-toggle disabled [(ngModel)]="tieneVisitaTecnica"></mat-slide-toggle>
+                                    </div>
                                 </div>
-                                <p class="card-category">Used Space</p>
-                                <h3 class="card-title">49/50
-                                    <small>GB</small>
-                                </h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons text-danger">warning</i>
-                                    <a href="javascript:void(0)">Get More Space...</a>
+
+                                <br>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <b>Analista Responsable:</b> Obed Blas
+                                    </div>
+
+                                    <div class="col">
+                                        <b>Fecha de inicio de licitacion:</b> 20-05-2020
+                                    </div>
+
+                                    <div class="col">
+                                        <b>Monto referencial:</b> 100000000000
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </mat-expansion-panel>
+                            <!--------------------->
+                        </mat-accordion>
+
+                       <!--POSTORES-->
+                        <mat-accordion>
+                            <!--DATOS DE CABECERA-->
+                            <mat-expansion-panel expanded
+                                                 (opened)="panelOpenState = true"
+                                                 (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <b class="text-primary">Participantes</b>
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+
+                                <!--Content-->
+                                <div class="mat-elevation-z8">
+                                    <table mat-table [dataSource]="dataSource">
+
+                                        <ng-container matColumnDef="isSelected">
+                                            <th mat-header-cell *matHeaderCellDef></th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <mat-checkbox [(ngModel)]="element.isSelected"></mat-checkbox>
+                                            </td>
+                                        </ng-container>
+
+
+                                        <ng-container matColumnDef="razonSocial">
+                                            <th mat-header-cell *matHeaderCellDef> Razon Social</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.razonSocial}} </td>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="ruc">
+                                            <th mat-header-cell *matHeaderCellDef> Numero de RUC</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.numeroRuc}} </td>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="contacto">
+                                            <th mat-header-cell *matHeaderCellDef> Contacto</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.contacto}} </td>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="correo">
+                                            <th mat-header-cell *matHeaderCellDef> Correo</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.mails}} </td>
+                                        </ng-container>
+
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    </table>
+
+                                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                                </div>
+
+
+                            </mat-expansion-panel>
+                            <!--------------------->
+                        </mat-accordion>
 
                     </mat-tab>
                     <!--TAB RFI-->

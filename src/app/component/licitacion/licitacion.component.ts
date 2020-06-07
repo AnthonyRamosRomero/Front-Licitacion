@@ -3,6 +3,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {ProveedorService} from '../../service/Proveedor/proveedor.service';
 import {Proveedor} from '../../models/entities/proveedor';
+import {AlertasService} from '../../Util/alertas.service';
 
 @Component({
     selector: 'app-licitacion',
@@ -11,48 +12,41 @@ import {Proveedor} from '../../models/entities/proveedor';
 })
 export class LicitacionComponent implements OnInit {
 
-    proveedoresList: Proveedor[] = []
-    estado = false
+    tieneRFI = true
+    participantesNotificados = true
+    tieneVisitaTecnica = true
 
-    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'flag'];
-    dataSource = new MatTableDataSource<Proveedor>(this.proveedoresList);
 
-    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+    listProvedores: Proveedor[] = []
+
+    displayedColumns: string[] = ['isSelected', 'razonSocial', 'ruc', 'contacto', 'correo']
+    dataSource = new MatTableDataSource<Proveedor>(this.listProvedores)
+
+    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator
 
     constructor(private proveedorService: ProveedorService) {
     }
 
+
     ngOnInit() {
-        this.getData().then(data => {
-            console.log(data);
-            this.dataSource = new MatTableDataSource<Proveedor>(data.result);
-            this.dataSource.paginator = this.paginator;
+        this.findAllProviders()
+    }
+
+
+    findAllProviders() {
+        /*SOLO MOSTRAR LOS PROVEEDORES QUE PERTENECEN AL REQUERIMIENTO*/
+        this.proveedorService.finAll().toPromise().then(o => {
+            this.listProvedores = o.result
+
+            /*Vamos ah setear el flag isSelected*/
+            this.listProvedores.forEach(data => {
+                data.isSelected = false
+            })
+
+            this.dataSource = new MatTableDataSource<Proveedor>(o.result);
+            this.dataSource.paginator = this.paginator
+        }).catch(error => {
+            AlertasService.showNotification('top', 'right', 'Ocurrio un problema! ' + error.message, 'danger')
         })
-
-    }
-
-    getPush() {
-        console.log(this.dataSource)
-    }
-
-    getData() {
-        return this.proveedorService.finAll().toPromise()
     }
 }
-
-export interface PeriodicElement {
-    name: string;
-    position: number;
-    weight: number;
-    symbol: string;
-    flag: boolean;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', flag: false},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', flag: true},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', flag: true},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', flag: true},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B', flag: true},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C', flag: true},
-];
