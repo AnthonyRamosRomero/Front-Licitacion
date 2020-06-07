@@ -16,6 +16,8 @@ export class LicitacionComponent implements OnInit {
     participantesNotificados = true
     tieneVisitaTecnica = true
 
+    panelOpenState = true
+
 
     listProvedores: Proveedor[] = []
 
