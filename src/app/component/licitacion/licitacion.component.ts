@@ -12,6 +12,24 @@ import {AlertasService} from '../../Util/alertas.service';
 })
 export class LicitacionComponent implements OnInit {
 
+
+    /**************************VAR DATOS GENERALES****************************/
+
+
+    /**************************       VAR RFI    ****************************/
+    columnsTableRFI: string[] = ['Indice', 'Pregunta', 'Respuesta', 'Sustento'];
+    dataSourceTableRFI = ELEMENT_DATA;
+
+    /**************************       VAR RFP    ****************************/
+
+
+
+
+
+
+
+
+
     tieneRFI = true
     participantesNotificados = true
     tieneVisitaTecnica = true
@@ -52,3 +70,17 @@ export class LicitacionComponent implements OnInit {
         })
     }
 }
+
+
+export interface PeriodicElement {
+    name: string;
+    position: number;
+    weight: number;
+    symbol: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+];
