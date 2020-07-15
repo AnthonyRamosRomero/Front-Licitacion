@@ -4,6 +4,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Proveedor} from '../../models/entities/proveedor';
 import {ProveedorService} from '../../service/Proveedor/proveedor.service';
 import {AlertasService} from '../../Util/alertas.service';
+import {ConfigProceso} from '../../models/entities/config-proceso';
+import {RequerimientoService} from '../../service/requerimiento/requerimiento.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-config-proceso',
@@ -27,7 +30,8 @@ export class ConfigProcesoComponent implements OnInit {
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator
 
-    constructor(private proveedorService: ProveedorService) {
+    constructor(private proveedorService: ProveedorService,
+                private requerimientoService: RequerimientoService) {
     }
 
     ngOnInit() {
@@ -47,11 +51,33 @@ export class ConfigProcesoComponent implements OnInit {
             this.dataSource = new MatTableDataSource<Proveedor>(o.result);
             this.dataSource.paginator = this.paginator
         }).catch(error => {
-            AlertasService.showNotification('top', 'right', 'Ocurrio un problema! ' + error.message, 'danger')
+            AlertasService.showNotification('top', 'right', 'Ocurrio un problema! ' + error.message, 'success')
+
         })
     }
 
     getValueCheck() {
         console.log(this.listProvedores)
+        console.log(this.tieneRFI)
+        console.log(this.tieneVisitaTecnica)
+        console.log(this.notificarParticipantes)
+    }
+
+    saveConfigurationInitial() {
+        const config: ConfigProceso = new ConfigProceso()
+        config.AnalistaId = 0
+        this.requerimientoService.SaveConfigurationInitial(config)
+            .toPromise()
+            .then(result => {
+                console.log(result)
+            }).catch(error => {
+                console.log('ERROR')
+        })
+        // config.RequerimientoId = METER EL ID_REQUERIMIENTO EN LA SESSION
+        // El ID ESTADO SERA MEDIANTE UN TRIGGER
+        // FECHA TRATAMIENTO POR LADO DEL BACK
+        // FECHA ADJUDICACION NULL HASTA SER ADJUDICADO
+        // LA CREACION DE LAS RONDAS SEGUN TIPO PROCESO SERA MEDIANTE UN PROCEDIMIENTO ALMACENADO
+
     }
 }

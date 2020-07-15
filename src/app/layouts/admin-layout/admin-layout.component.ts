@@ -6,6 +6,7 @@ import {Router, NavigationEnd, NavigationStart} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from 'jquery';
+import {UserSessionService} from '../../Util/user-session.service';
 
 @Component({
     selector: 'app-admin-layout',
@@ -13,14 +14,20 @@ import * as $ from 'jquery';
     styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
+    page: String = '';
+
     private _router: Subscription;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
 
-    constructor(public location: Location, private router: Router) {
+    constructor(public location: Location,
+                private router: Router,
+                private userSession: UserSessionService) {
     }
 
     ngOnInit() {
+
+        this.userInSession()
         const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
         if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
@@ -161,4 +168,9 @@ export class AdminLayoutComponent implements OnInit {
         return bool;
     }
 
+    userInSession() {
+        // this.userSession.removeCookie('IdUsuario')
+        const idUsuario = this.userSession.getUserSession('IdUsuario');
+        this.page = idUsuario == null || idUsuario.trim() === '' ? 'LOGIN' : 'DASHBOARD'
+    }
 }

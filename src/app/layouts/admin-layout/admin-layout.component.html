@@ -1,4 +1,10 @@
-<div class="wrapper">
+<div *ngIf="page == 'LOGIN'">
+    <app-login>
+
+    </app-login>
+</div>
+
+<div *ngIf="page == 'DASHBOARD'" class="wrapper">
     <div class="sidebar" data-color="purple" data-background-color="black" data-image="./assets/img/sidebar-1.jpg">
         <app-sidebar></app-sidebar>
         <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
@@ -27,7 +33,7 @@
                             <span class="badge filter badge-danger active" data-color="danger"></span>
                         </div>
                         <div class="clearfix"></div>
-                    <div class="ripple-container"></div></a>
+                        <div class="ripple-container"></div></a>
                 </li>
                 <li class="header-title">Images</li>
                 <li>
@@ -38,7 +44,7 @@
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
                         <img src="./assets/img/sidebar-2.jpg" alt="">
-                    <div class="ripple-container"></div></a>
+                        <div class="ripple-container"></div></a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
@@ -54,3 +60,5 @@
         </div>
     </div>
 </div>
+
+

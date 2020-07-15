@@ -3,7 +3,6 @@ import {AreaSolicitante} from './area-solicitante';
 import {BasicEntity} from './basic-entity';
 
 export class Requerimiento extends BasicEntity {
-    
     id: number
     tipoRequerimientoId: number
     tipoRequerimiento: TipoRequerimiento

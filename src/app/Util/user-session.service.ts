@@ -18,4 +18,8 @@ export class UserSessionService {
   setUserSession(key: string, value: string) {
     this.cookieService.set(key, value)
   }
+
+  removeCookie(key: string) {
+    this.cookieService.delete(key)
+  }
 }

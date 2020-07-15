@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ResponseEntity} from '../../models/entities/ResponseEntity';
 import {AreaSolicitante} from '../../models/entities/area-solicitante';
 import {Requerimiento} from '../../models/entities/requerimiento';
+import {ConfigProceso} from '../../models/entities/config-proceso';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -31,5 +32,9 @@ export class RequerimientoService {
 
   save(requerimiento: Requerimiento) {
     return this.http.post<ResponseEntity<Requerimiento>>(this.getUrlService('saveRequirement'), requerimiento, httpOptions);
+  }
+  /*Manejarlo por promesas*/
+  SaveConfigurationInitial(configProceso: ConfigProceso) {
+      return this.http.post<ResponseEntity<String>>(this.getUrlService('SaveConfigurationInitial'), configProceso, httpOptions);
   }
 }

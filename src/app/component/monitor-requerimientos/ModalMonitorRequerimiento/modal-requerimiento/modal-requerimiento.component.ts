@@ -6,10 +6,8 @@ import {CookieService} from 'ngx-cookie-service';
 import {UserSessionService} from '../../../../Util/user-session.service';
 import {AnalistaService} from '../../../../service/Analista/analista.service';
 import {Analista} from '../../../../models/entities/analista';
-import {Estado} from '../../../../models/entities/estado';
 import {EstadoService} from '../../../../service/Estado/estado.service';
 import {ConfigProcesoService} from '../../../../service/ConfigProceso/config-proceso.service';
-import {config} from 'rxjs';
 import {ConfigProceso} from '../../../../models/entities/config-proceso';
 import {AlertasService} from '../../../../Util/alertas.service';
 
@@ -72,6 +70,7 @@ export class ModalRequerimientoComponent implements OnInit {
             this.configProcesoService.save(configProceso, idRequerimiento.toString()).subscribe(value => {
                 AlertasService.showNotification('top', 'right', 'Felicidades! usted llevara el proceso', 'success')
             })
+            // REDIRECIONAR CONFIGURACION DE PROCESO
         }).catch(ex => {
             console.log(ex)
             AlertasService.showNotification('top', 'right', ex, 'danger')
