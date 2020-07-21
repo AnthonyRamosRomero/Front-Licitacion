@@ -5,6 +5,9 @@ import {data} from 'jquery';
 import {UserSessionService} from 'app/Util/user-session.service';
 import {Router, RouterLink, RouteConfigLoadStart} from '@angular/router'
 import {AlertasService} from '../../../Util/alertas.service';
+import {AdminLayoutComponent} from '../../../layouts/admin-layout/admin-layout.component';
+import {CookieServiceService} from '../../../Util/cookie-service.service';
+import {Usuario} from '../../../models/entities/usuario';
 
 @Component({
     selector: 'app-login',
@@ -17,7 +20,9 @@ export class LoginComponent implements OnInit {
 
     constructor(private loginService: LoginService,
                 private userSessionService: UserSessionService,
-                private router: Router) {
+                private router: Router,
+                private adminLayoutComponent: AdminLayoutComponent,
+                private cookieService: CookieServiceService) {
     }
 
     ngOnInit(): void {
@@ -25,30 +30,33 @@ export class LoginComponent implements OnInit {
     }
 
     onLogin() {
-        debugger
         this.loginService.validaUsuario(this.loginDto)
             .toPromise()
             .then(response => {
+
                 const status = response.ok;
-                if (status) {
-                    if (response.result != null && response.result.id != null) {
-                        this.userSessionService.setUserSession('IdUsuario', response.result.id.toString());
-                        AlertasService.showNotification('top', 'right', 'Usuario logeado', 'sus')
-                    } else {
-                        AlertasService.showNotification('top', 'right', 'Usuario no registrado', 'danger')
-                    }
+                if (response.result != null && response.result.id != null) {
+                    debugger
+                    const usuario: Usuario = response.result
+                    console.log(usuario.AnalistaId)
+                    AlertasService.showNotification('top', 'right', 'Usuario logeado', 'sus')
+                    this.userSessionService.setUserSession('IdUsuario', usuario.id + '')
+                    this.cookieService.setKookie('IdAnalista', usuario.AnalistaId + '')
                 } else {
-                    // Error en el interno
+                    AlertasService.showNotification('top', 'right', 'Usuario no registrado', 'danger')
                 }
+                resolve()
             }).catch(error => {
-            AlertasService.showNotification('top', 'right', 'Ocurrio un problema! ' + error.message, 'danger')
+            console.log(error);
         }).then(response => {
-            this.router.navigate(['#']);
+            this.adminLayoutComponent.ngOnInit();
         });
     }
 
 
     reLoad() {
-
+        this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/']);
+        });
     }
 }

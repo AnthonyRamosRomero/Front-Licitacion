@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Requerimiento} from 'app/models/entities/requerimiento';
 import {DetalleRequerimientoService} from '../../../../service/DetalleReuquerimiento/detalle-requerimiento.service';
 import {DetalleRequerimiento} from '../../../../models/entities/detalle-requerimiento';
-import {CookieService} from 'ngx-cookie-service';
 import {UserSessionService} from '../../../../Util/user-session.service';
 import {AnalistaService} from '../../../../service/Analista/analista.service';
 import {Analista} from '../../../../models/entities/analista';
@@ -10,6 +9,7 @@ import {EstadoService} from '../../../../service/Estado/estado.service';
 import {ConfigProcesoService} from '../../../../service/ConfigProceso/config-proceso.service';
 import {ConfigProceso} from '../../../../models/entities/config-proceso';
 import {AlertasService} from '../../../../Util/alertas.service';
+import {CookieServiceService} from '../../../../Util/cookie-service.service';
 
 @Component({
     selector: 'app-modal-requerimiento',
@@ -25,11 +25,12 @@ export class ModalRequerimientoComponent implements OnInit {
 
     constructor(
         private DetalleRequeimientoService: DetalleRequerimientoService,
-        private cookieService: CookieService,
+        private cookieUserService: UserSessionService,
         private userSession: UserSessionService,
         private analistaService: AnalistaService,
         private estadoService: EstadoService,
-        private configProcesoService: ConfigProcesoService
+        private configProcesoService: ConfigProcesoService,
+        private cookieService: CookieServiceService
     ) {
     }
 
@@ -55,6 +56,8 @@ export class ModalRequerimientoComponent implements OnInit {
 
         const idRequerimiento = ModalRequerimientoComponent.idRequerimiento
         const idUser = this.userSession.getUserSession('idUsuario')
+        const idAnalista = this.cookieService.getKookie('IdAnalista')
+
         let analista: Analista
         await this.analistaService.findById(idUser).subscribe(o => {
             analista = o.result
